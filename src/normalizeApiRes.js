@@ -63,3 +63,28 @@ export get24HourWeather(data){
 }
 
 
+
+export function getWeatherEmoji(icon){
+    // here map is an object of icons with key value pairs
+    const map = {
+       "clear-day":           "☀️",
+    "clear-night":         "🌙",
+    "cloudy":              "☁️",
+    "fog":                 "🌫️",
+    "partly-cloudy-day":   "⛅",
+    "partly-cloudy-night": "🌤",
+    "rain":                "🌧️",
+    "showers-day":         "🌦️",
+    "showers-night":       "🌧️",
+    "sleet":               "🌨️",
+    "snow":                "❄️",
+    "snow-showers-day":    "🌨️",
+    "thunder":             "⛈️",
+    "thunder-rain":        "⛈️",
+    "thunder-showers-day": "⛈️",
+    "wind":                "💨",
+    };
+
+
+    return map[icon] || "🌡️" ;
+}
