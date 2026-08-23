@@ -38,6 +38,14 @@ export function getAllHourlyData(data){
 
 }
 
+//What it does: It takes all the hourly data points and looks at the 
+// separate date (e.g., "2026-08-23") and time (e.g., "14:00") strings.
+// Why it does this: JavaScript cannot easily compare plain text times. 
+// By merging them into a real JavaScript new Date() object, 
+// the computer can now accurately measure exactly how far apart two times are.
+// It sorts all the weather data from the oldest time to the furthest future time. 
+// This ensures the timeline is in a perfect, straight chronological line.
+
 export get24HourWeather(data){
     const allHours = getAllHourlyData(data); // hours 
     const now = new Date();     // present time 
@@ -48,8 +56,8 @@ export get24HourWeather(data){
 
     const sorted = hoursWithDate.sort((a, b) => a.dateTime - b.dateTime); // which one is greater will come on first place like 1, 2, 3 4
     const currentIndex = sorted.findIndex(hour => hour.dateTime >= now); // here we will get the index position of just present time api call
-
-    if(currentIndex === -1) { 
+//Analogy: Imagine a long film strip of weather data. This line drops a pin on the frame representing the current hour.
+    if(currentIndex === -1) {  // What it does: If findIndex returns -1, it means every single piece of data in your list is in the past, and there is no future data.The result: It returns the last 24 items in the list as previous24Hour and leaves next24Hour completely empty.
         return {
             previous24Hour: sorted.slice(-24),
             next24Hour: []
