@@ -39,17 +39,17 @@ export function getAllHourlyData(data){
 }
 
 export get24HourWeather(data){
-    const allHours = getAllHourlyData(data);
-    const now = new Date();
+    const allHours = getAllHourlyData(data); // hours 
+    const now = new Date();     // present time 
     const hoursWithDate = allHours.map(hour => ({     //this will retuen an object 
         ...hour,
         dateTime: new Date(`${hour.date}T ${hour.time}`),
     }));
 
-    const sorted = hoursWithDate.sort((a, b) => a.dateTime - b.dateTime);
-    const currentIndex = sorted.findIndex(hour => hour.dateTime >= now);
+    const sorted = hoursWithDate.sort((a, b) => a.dateTime - b.dateTime); // which one is greater will come on first place like 1, 2, 3 4
+    const currentIndex = sorted.findIndex(hour => hour.dateTime >= now); // here we will get the index position of just present time api call
 
-    if(currentIndex === -1) {
+    if(currentIndex === -1) { 
         return {
             previous24Hour: sorted.slice(-24),
             next24Hour: []
@@ -86,8 +86,9 @@ export function getWeatherEmoji(icon){
     };
 
 
-    return map[icon] || "🌡️" ;
-}
+    return map[icon] || "🌡️" ;     // here whenever this function get a parameter so called cloudy, snow , etc 
+}                                // this func will imediately return  that specific icon to that perticular key.
+
 
 
           // Format "2026-08-23" → "Today" / "Tomorrow" / "Sat, 23 Aug"
@@ -102,4 +103,13 @@ export function formatDate(dateStr) {
   return date.toLocaleDateString("en-AE", {
     weekday: "short", month: "short", day: "numeric",
   });
+}
+
+
+xport function formatTime(timeStr){
+    const [h, m] = timeStr.split(":");  // this will return an arr we destruccture it
+    const hour = parseInt(h, 10);
+    const suffix = hour >=12 ? "pm" : "am";
+    const display = hour % 12 || 12;
+    return `${display}:${m} ${suffix}`;
 }
