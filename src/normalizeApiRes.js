@@ -88,3 +88,18 @@ export function getWeatherEmoji(icon){
 
     return map[icon] || "🌡️" ;
 }
+
+
+          // Format "2026-08-23" → "Today" / "Tomorrow" / "Sat, 23 Aug"
+export function formatDate(dateStr) {
+  const date     = new Date(dateStr + "T00:00:00");
+  const today    = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
+ 
+  if (date.toDateString() === today.toDateString())    return "Today";
+  if (date.toDateString() === tomorrow.toDateString()) return "Tomorrow";
+  return date.toLocaleDateString("en-AE", {
+    weekday: "short", month: "short", day: "numeric",
+  });
+}
