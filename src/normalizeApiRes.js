@@ -1,3 +1,22 @@
+// here is an API
+xport async function apiResponse(location){
+    const key = import.meta.env.VITE_WEATHER_API_KEY;
+    // throw error here
+    const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${encodeURIComponent(location)}?unitGroup=metric&key=${key}&contentType=json`);
+    if (!response.ok) {
+        if (response.status === 400) throw new Error(`City "${location}" not found. Check the Spelling and try againg.`);
+        if (response.status === 401) throw new Error("Invalid Api Key, Check your .env file");
+        if (response.status === 429) throw new Error("Too Many requests, Please wait for a moment and try again");
+        throw new Error(`Request failed (${response.status}): ${response.statusText}`);
+    }
+       const data = await response.json();
+    console.log(data);
+       return data;
+}
+
+
+
+
 // NORMALIZATION OF AN API RESPONSE 
 export function getDailyWeather(data){
   return data.days.map(day => ({  // here object has been return
