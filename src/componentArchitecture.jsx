@@ -84,3 +84,25 @@ hours = {
 // }
 
 // So React essentially calls your component like:
+
+
+<HourCard hour={hour1} />
+
+<HourCard hour={hour2} />
+
+<HourCard hour={hour3} />
+
+// So this is how HourCard gets inside HourSection.
+
+// 5. But where does hour come fro
+
+    // when we run map on hours array it will give us an hour one elemet of an array.
+
+    // on first itteration forst hour comes into and parse into HourCard like this 
+<HourCard
+    hour={{
+        date: "2026-08-25",
+        time: "16:00",
+        temperature: 34
+    }}
+/>
