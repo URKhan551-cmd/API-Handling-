@@ -44,3 +44,16 @@ hours = {
             icon: "clear-day"
         }
     ],
+
+     next24Hour: [
+        {
+            date: "2026-08-25",
+            time: "16:00",
+            temperature: 34,
+            feelsLike: 36,
+            rainProbability: 5,
+            windSpeed: 15,
+            icon: "clear-day"
+        }
+    ]
+}
