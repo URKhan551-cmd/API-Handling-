@@ -4,6 +4,14 @@ This is your highest-level component:
 
 const HourlyDataWeather = ({ hours }) => {
     const { previous24Hour, next24Hour } = hours;
+    const { previous24Hour, next24Hour } = hours;
+
+// is simply extracting those two arrays.
+
+// It's equivalent to:
+
+// const previous24Hour = hours.previous24Hour;
+// const next24Hour = hours.next24Hour;
 
     return (
         <div className="flex flex-col gap-6">
@@ -57,3 +65,22 @@ hours = {
         }
     ]
 }
+
+
+// <HourSection
+//     title="⏪ Previous 24 Hours"
+//     hours={[...previous24Hour].reverse()}
+// />
+
+// This is basically saying:
+
+// "React, create an HourSection component and give it these two pieces of information."
+
+// You're passing props:
+
+// {
+//     title: "⏪ Previous 24 Hours",
+//     hours: [...]
+// }
+
+// So React essentially calls your component like:
